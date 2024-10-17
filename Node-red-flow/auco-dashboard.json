@@ -1,0 +1,524 @@
+[
+    {
+        "id": "ef47d4e96b840890",
+        "type": "function",
+        "z": "1ac532d96d2cc248",
+        "name": "temp",
+        "func": "// Lấy giá trị nhiệt độ từ msg.payload\nvar temperature = msg.payload.temp;\n\n// Tạo đối tượng dữ liệu chỉ chứa nhiệt độ để hiển thị trên dashboard\nvar dashboardData = {\n    temperature: temperature + \"°C\"\n};\n\n// Output dữ liệu đã xử lý\nmsg.payload = dashboardData;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1010,
+        "y": 240,
+        "wires": [
+            [
+                "0b9cdc3c7a4f6b88"
+            ]
+        ]
+    },
+    {
+        "id": "a68817e10310524a",
+        "type": "function",
+        "z": "1ac532d96d2cc248",
+        "name": "temp",
+        "func": "// Lấy giá trị nhiệt độ từ msg.payload\nvar temperature = msg.payload.temp;\n\n// Tạo đối tượng dữ liệu chỉ chứa nhiệt độ để hiển thị trên dashboard\nvar dashboardData = {\n    temperature: temperature + \"°C\"\n};\n\n// Output dữ liệu đã xử lý\nmsg.payload = dashboardData;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 970,
+        "y": 600,
+        "wires": [
+            [
+                "5fecf01dea4f90a2"
+            ]
+        ]
+    },
+    {
+        "id": "af93aa299cc78139",
+        "type": "function",
+        "z": "1ac532d96d2cc248",
+        "name": "distance",
+        "func": "// Lấy giá trị nhiệt độ từ msg.payload\nvar distance = msg.payload.distance;\n\n\n// Tạo đối tượng dữ liệu chỉ chứa nhiệt độ để hiển thị trên dashboard\nvar dashboardData = {\n    distance: distance + \"mm\"\n};\n\n// Output dữ liệu đã xử lý\nmsg.payload = dashboardData;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 960,
+        "y": 700,
+        "wires": [
+            [
+                "c92d5924ad188405"
+            ]
+        ]
+    },
+    {
+        "id": "80a6174eea18c86b",
+        "type": "function",
+        "z": "1ac532d96d2cc248",
+        "name": "distance",
+        "func": "// Lấy giá trị nhiệt độ từ msg.payload\nvar distance = msg.payload.distance;\n\n\n// Tạo đối tượng dữ liệu chỉ chứa nhiệt độ để hiển thị trên dashboard\nvar dashboardData = {\n    distance: distance + \"mm\"\n};\n\n// Output dữ liệu đã xử lý\nmsg.payload = dashboardData;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 1020,
+        "y": 340,
+        "wires": [
+            [
+                "7ad58db9c1509a00"
+            ]
+        ]
+    },
+    {
+        "id": "fbe35f3852f0ada2",
+        "type": "mqtt in",
+        "z": "1ac532d96d2cc248",
+        "name": "",
+        "topic": "mk_group/auco/data_center/main01_hvac/edge/raspi/tags",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "bbc707483d6c44da",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 630,
+        "y": 240,
+        "wires": [
+            [
+                "ef47d4e96b840890"
+            ]
+        ]
+    },
+    {
+        "id": "2820ac9de2eff051",
+        "type": "mqtt in",
+        "z": "1ac532d96d2cc248",
+        "name": "",
+        "topic": "mk_group/auco/data_center/2ry01_hvac/edge/raspi/tags",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "bbc707483d6c44da",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 600,
+        "y": 620,
+        "wires": [
+            [
+                "a68817e10310524a"
+            ]
+        ]
+    },
+    {
+        "id": "629e38dbad308070",
+        "type": "mqtt in",
+        "z": "1ac532d96d2cc248",
+        "name": "",
+        "topic": "mk_group/auco/data_center/main02_hvac/edge/raspi/tags",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "bbc707483d6c44da",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 630,
+        "y": 340,
+        "wires": [
+            [
+                "80a6174eea18c86b"
+            ]
+        ]
+    },
+    {
+        "id": "b43bc87b035e9d90",
+        "type": "mqtt in",
+        "z": "1ac532d96d2cc248",
+        "name": "",
+        "topic": "mk_group/auco/data_center/2ry02_hvac/edge/raspi/tags",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "bbc707483d6c44da",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 580,
+        "y": 700,
+        "wires": [
+            [
+                "af93aa299cc78139"
+            ]
+        ]
+    },
+    {
+        "id": "fa8cd24d4e147c08",
+        "type": "mqtt in",
+        "z": "1ac532d96d2cc248",
+        "name": "",
+        "topic": "mk_group/auco/data_center/main03_hvac/edge/raspi/tags",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "bbc707483d6c44da",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 630,
+        "y": 440,
+        "wires": [
+            [
+                "f6a0e86a490adc10"
+            ]
+        ]
+    },
+    {
+        "id": "f6a0e86a490adc10",
+        "type": "function",
+        "z": "1ac532d96d2cc248",
+        "name": "digital input",
+        "func": "// Lấy giá trị nhiệt độ từ msg.payload\n//var distance = msg.payload.distance;\nvar digitalInput = msg.payload.digitalInput;\n\n// Tạo đối tượng dữ liệu chỉ chứa nhiệt độ để hiển thị trên dashboard\nvar dashboardData = {\n    digitalInput: digitalInput,\n};\n\n// Output dữ liệu đã xử lý\nmsg.payload = dashboardData;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 440,
+        "wires": [
+            [
+                "c813d52491917709"
+            ]
+        ]
+    },
+    {
+        "id": "95774b3fa97bbe9c",
+        "type": "mqtt in",
+        "z": "1ac532d96d2cc248",
+        "name": "",
+        "topic": "mk_group/auco/data_center/2ry03_hvac/edge/raspi/tags",
+        "qos": "2",
+        "datatype": "auto-detect",
+        "broker": "bbc707483d6c44da",
+        "nl": false,
+        "rap": true,
+        "rh": 0,
+        "inputs": 0,
+        "x": 580,
+        "y": 780,
+        "wires": [
+            [
+                "8cf8480f4d1a3a3c"
+            ]
+        ]
+    },
+    {
+        "id": "8cf8480f4d1a3a3c",
+        "type": "function",
+        "z": "1ac532d96d2cc248",
+        "name": "digital input",
+        "func": "// Lấy giá trị nhiệt độ từ msg.payload\n//var distance = msg.payload.distance;\nvar digitalInput = msg.payload.digitalInput;\n\n// Tạo đối tượng dữ liệu chỉ chứa nhiệt độ để hiển thị trên dashboard\nvar dashboardData = {\n    digitalInput: digitalInput,\n};\n\n// Output dữ liệu đã xử lý\nmsg.payload = dashboardData;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 990,
+        "y": 780,
+        "wires": [
+            [
+                "d0e301dc556c7544"
+            ]
+        ]
+    },
+    {
+        "id": "c813d52491917709",
+        "type": "trigger",
+        "z": "1ac532d96d2cc248",
+        "name": "",
+        "op1": "true",
+        "op2": "false",
+        "op1type": "bool",
+        "op2type": "bool",
+        "duration": "30",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "min",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 1270,
+        "y": 440,
+        "wires": [
+            [
+                "07d6b312c338b207"
+            ]
+        ]
+    },
+    {
+        "id": "d0e301dc556c7544",
+        "type": "trigger",
+        "z": "1ac532d96d2cc248",
+        "name": "",
+        "op1": "true",
+        "op2": "false",
+        "op1type": "bool",
+        "op2type": "bool",
+        "duration": "30",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "min",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 1210,
+        "y": 780,
+        "wires": [
+            [
+                "0f5bf2c7b582d8dd"
+            ]
+        ]
+    },
+    {
+        "id": "07d6b312c338b207",
+        "type": "ui_switch",
+        "z": "1ac532d96d2cc248",
+        "name": "ack",
+        "label": "",
+        "tooltip": "",
+        "group": "521f48c95d390f59",
+        "order": 9,
+        "width": 11,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 1470,
+        "y": 440,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0f5bf2c7b582d8dd",
+        "type": "ui_switch",
+        "z": "1ac532d96d2cc248",
+        "name": "ack",
+        "label": "",
+        "tooltip": "",
+        "group": "521f48c95d390f59",
+        "order": 19,
+        "width": 11,
+        "height": 1,
+        "passthru": true,
+        "decouple": "false",
+        "topic": "topic",
+        "topicType": "msg",
+        "style": "",
+        "onvalue": "true",
+        "onvalueType": "bool",
+        "onicon": "",
+        "oncolor": "",
+        "offvalue": "false",
+        "offvalueType": "bool",
+        "officon": "",
+        "offcolor": "",
+        "animate": false,
+        "className": "",
+        "x": 1450,
+        "y": 780,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "0b9cdc3c7a4f6b88",
+        "type": "ui_gauge",
+        "z": "1ac532d96d2cc248",
+        "name": "Cửa Trước - sht30",
+        "group": "521f48c95d390f59",
+        "order": 1,
+        "width": 5,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Cửa Trước - Nhiệt Độ",
+        "label": "",
+        "format": "{{msg.payload.temperature}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "30",
+        "seg2": "35",
+        "diff": false,
+        "className": "",
+        "x": 1290,
+        "y": 240,
+        "wires": []
+    },
+    {
+        "id": "5fecf01dea4f90a2",
+        "type": "ui_gauge",
+        "z": "1ac532d96d2cc248",
+        "name": "Cửa Sau - sht30",
+        "group": "521f48c95d390f59",
+        "order": 11,
+        "width": 5,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Cửa Sau - Nhiệt Độ",
+        "label": "",
+        "format": "{{msg.payload.temperature}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "30",
+        "seg2": "35",
+        "diff": false,
+        "className": "",
+        "x": 1220,
+        "y": 600,
+        "wires": []
+    },
+    {
+        "id": "c92d5924ad188405",
+        "type": "ui_gauge",
+        "z": "1ac532d96d2cc248",
+        "name": "Cửa Sau - Ultra",
+        "group": "521f48c95d390f59",
+        "order": 13,
+        "width": 5,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Cửa Sau - Mực Nước",
+        "label": "",
+        "format": "{{msg.payload.distance}}",
+        "min": "400",
+        "max": "0",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "282",
+        "seg2": "264",
+        "diff": false,
+        "className": "",
+        "x": 1220,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "7ad58db9c1509a00",
+        "type": "ui_gauge",
+        "z": "1ac532d96d2cc248",
+        "name": "Cửa Trước - Ultra",
+        "group": "521f48c95d390f59",
+        "order": 3,
+        "width": 5,
+        "height": 3,
+        "gtype": "gage",
+        "title": "Cửa Trước - Mực Nước",
+        "label": "",
+        "format": "{{msg.payload.distance}}",
+        "min": "400",
+        "max": "0",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "282",
+        "seg2": "264",
+        "diff": false,
+        "className": "",
+        "x": 1290,
+        "y": 340,
+        "wires": []
+    },
+    {
+        "id": "bbc707483d6c44da",
+        "type": "mqtt-broker",
+        "name": "auco",
+        "broker": "mqtt.auco.lan",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "521f48c95d390f59",
+        "type": "ui_group",
+        "name": "AuCo Datacenter",
+        "tab": "b4951e99af69c4e7",
+        "order": 1,
+        "disp": false,
+        "width": "19",
+        "collapse": false,
+        "className": ""
+    },
+    {
+        "id": "b4951e99af69c4e7",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

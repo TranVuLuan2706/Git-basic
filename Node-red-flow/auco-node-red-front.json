@@ -1,0 +1,707 @@
+[
+    {
+        "id": "8fd7795df8a3d039",
+        "type": "inject",
+        "z": "7e0db91819122575",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            }
+        ],
+        "repeat": "1",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 90,
+        "y": 320,
+        "wires": [
+            [
+                "20cbfe205dcb6599",
+                "c1ac86e36e973377"
+            ]
+        ]
+    },
+    {
+        "id": "e4f68555b63186be",
+        "type": "switch",
+        "z": "7e0db91819122575",
+        "name": "check temperature",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lte",
+                "v": "35",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 570,
+        "y": 100,
+        "wires": [
+            [
+                "4daf10a65c485fc5"
+            ],
+            [
+                "09f4e279b9e55f4c"
+            ]
+        ]
+    },
+    {
+        "id": "4daf10a65c485fc5",
+        "type": "change",
+        "z": "7e0db91819122575",
+        "name": "if >34* --> Light On --> 0",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 890,
+        "y": 40,
+        "wires": [
+            [
+                "fe2bccdc17fabe04"
+            ]
+        ]
+    },
+    {
+        "id": "6d217ac12c11959e",
+        "type": "trigger",
+        "z": "7e0db91819122575",
+        "name": "delay with ack click",
+        "op1": "true",
+        "op2": "false",
+        "op1type": "bool",
+        "op2type": "bool",
+        "duration": "30",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "min",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 890,
+        "y": 260,
+        "wires": [
+            [
+                "fe2bccdc17fabe04"
+            ]
+        ]
+    },
+    {
+        "id": "2334892d2c7cf244",
+        "type": "switch",
+        "z": "7e0db91819122575",
+        "name": "Click ACK change 0 to 1",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "eq",
+                "v": "1",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 570,
+        "y": 300,
+        "wires": [
+            [
+                "6d217ac12c11959e",
+                "9b04a214a5401cf3"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "20cbfe205dcb6599",
+        "type": "exec",
+        "z": "7e0db91819122575",
+        "command": "python /home/admin/sht30.py",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "SHT30",
+        "x": 320,
+        "y": 140,
+        "wires": [
+            [
+                "e4f68555b63186be",
+                "fd27331648775e7f",
+                "8c1bded0dc63699d"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "09f4e279b9e55f4c",
+        "type": "change",
+        "z": "7e0db91819122575",
+        "name": "if >34* --> Light On --> 0",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "num"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 890,
+        "y": 160,
+        "wires": [
+            [
+                "fe2bccdc17fabe04"
+            ]
+        ]
+    },
+    {
+        "id": "c1ac86e36e973377",
+        "type": "exec",
+        "z": "7e0db91819122575",
+        "command": "python /home/admin/ultrasonic.py",
+        "addpay": "",
+        "append": "",
+        "useSpawn": "false",
+        "timer": "",
+        "winHide": false,
+        "oldrc": false,
+        "name": "ultrasonic",
+        "x": 300,
+        "y": 480,
+        "wires": [
+            [
+                "80a662610fb560f5",
+                "505ca5c53ea6fb29",
+                "0dcd3db1bb5d5bda",
+                "f9c6c9914dc88f8c"
+            ],
+            [],
+            []
+        ]
+    },
+    {
+        "id": "80a662610fb560f5",
+        "type": "switch",
+        "z": "7e0db91819122575",
+        "name": "check water level <=255",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lte",
+                "v": "255",
+                "vt": "str"
+            },
+            {
+                "t": "else"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 590,
+        "y": 480,
+        "wires": [
+            [
+                "2ff06e85a99bdd20"
+            ],
+            [
+                "0713210a72c128aa"
+            ]
+        ]
+    },
+    {
+        "id": "f9c6c9914dc88f8c",
+        "type": "debug",
+        "z": "7e0db91819122575",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 540,
+        "y": 380,
+        "wires": []
+    },
+    {
+        "id": "2ff06e85a99bdd20",
+        "type": "change",
+        "z": "7e0db91819122575",
+        "name": "default 0 with sensor <= 255",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 900,
+        "y": 420,
+        "wires": [
+            [
+                "32928e8b6ab85457"
+            ]
+        ]
+    },
+    {
+        "id": "0713210a72c128aa",
+        "type": "change",
+        "z": "7e0db91819122575",
+        "name": "default 1 with sensor >=255",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 900,
+        "y": 480,
+        "wires": [
+            [
+                "32928e8b6ab85457"
+            ]
+        ]
+    },
+    {
+        "id": "fe2bccdc17fabe04",
+        "type": "or",
+        "z": "7e0db91819122575",
+        "name": "Logic check",
+        "topic": "",
+        "property": "payload",
+        "minData": "1",
+        "filter": false,
+        "x": 1210,
+        "y": 100,
+        "wires": [
+            [
+                "cdad21d1bd965194"
+            ]
+        ]
+    },
+    {
+        "id": "32928e8b6ab85457",
+        "type": "or",
+        "z": "7e0db91819122575",
+        "name": "",
+        "topic": "",
+        "property": "payload",
+        "minData": "1",
+        "filter": false,
+        "x": 1190,
+        "y": 440,
+        "wires": [
+            [
+                "217a22e597e8d34b"
+            ]
+        ]
+    },
+    {
+        "id": "9b04a214a5401cf3",
+        "type": "trigger",
+        "z": "7e0db91819122575",
+        "name": "delay with ack click",
+        "op1": "true",
+        "op2": "false",
+        "op1type": "bool",
+        "op2type": "bool",
+        "duration": "10",
+        "extend": false,
+        "overrideDelay": false,
+        "units": "min",
+        "reset": "",
+        "bytopic": "all",
+        "topic": "topic",
+        "outputs": 1,
+        "x": 890,
+        "y": 320,
+        "wires": [
+            [
+                "32928e8b6ab85457"
+            ]
+        ]
+    },
+    {
+        "id": "fd27331648775e7f",
+        "type": "debug",
+        "z": "7e0db91819122575",
+        "name": "debug 1",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 580,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "505ca5c53ea6fb29",
+        "type": "switch",
+        "z": "7e0db91819122575",
+        "name": "check water level 282 <= x <= 350",
+        "property": "payload",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "gte",
+                "v": "282",
+                "vt": "str"
+            },
+            {
+                "t": "lte",
+                "v": "265",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 2,
+        "x": 560,
+        "y": 600,
+        "wires": [
+            [
+                "bd1874ff979d3de0"
+            ],
+            [
+                "aae24f7147aa9874"
+            ]
+        ]
+    },
+    {
+        "id": "aae24f7147aa9874",
+        "type": "change",
+        "z": "7e0db91819122575",
+        "name": "change 0 with sensor x <=265",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "0",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 890,
+        "y": 560,
+        "wires": [
+            [
+                "2a3087f1bd2b5364"
+            ]
+        ]
+    },
+    {
+        "id": "bd1874ff979d3de0",
+        "type": "change",
+        "z": "7e0db91819122575",
+        "name": "default 1 with sensor x >= 282",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "1",
+                "tot": "str"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 890,
+        "y": 620,
+        "wires": [
+            [
+                "2a3087f1bd2b5364"
+            ]
+        ]
+    },
+    {
+        "id": "2a3087f1bd2b5364",
+        "type": "or",
+        "z": "7e0db91819122575",
+        "name": "",
+        "topic": "",
+        "property": "payload",
+        "minData": "1",
+        "filter": false,
+        "x": 1190,
+        "y": 620,
+        "wires": [
+            [
+                "94622be88e710320"
+            ]
+        ]
+    },
+    {
+        "id": "8c1bded0dc63699d",
+        "type": "function",
+        "z": "7e0db91819122575",
+        "name": "function 4",
+        "func": "// Lấy dữ liệu từ MQTT\nvar temperature = msg.payload;\n//var distance = msg.payload;\n// Tạo đối tượng dữ liệu đã xử lý\nvar processedData = {\n    name: \"pi hostname01 sensor\",\n    timestamp: new Date(),\n    functions: {\n        _deviceId: \"hostname01\",\n        _description: \"raspberry pi hostname01\"\n    },\n    temp: parseFloat(temperature),\n    //distance: distance\n};\n\n// Output dữ liệu đã xử lý\nmsg.payload = processedData;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 880,
+        "wires": [
+            [
+                "4d6e0653286987f2"
+            ]
+        ]
+    },
+    {
+        "id": "4d6e0653286987f2",
+        "type": "mqtt out",
+        "z": "7e0db91819122575",
+        "name": "auco-main01",
+        "topic": "mk_group/auco/data_center/main01_hvac/edge/raspi/tags",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "722c9276a040f589",
+        "x": 830,
+        "y": 880,
+        "wires": []
+    },
+    {
+        "id": "0dcd3db1bb5d5bda",
+        "type": "function",
+        "z": "7e0db91819122575",
+        "name": "function 5",
+        "func": "// Lấy dữ liệu từ MQTT\n//var temperature = msg.payload;\nvar distance = msg.payload;\n// Tạo đối tượng dữ liệu đã xử lý\nvar processedData = {\n    name: \"pi hostname01 sensor\",\n    timestamp: new Date(),\n    functions: {\n        _deviceId: \"hostname01\",\n        _description: \"raspberry pi hostname01\"\n    },\n    //temp: parseFloat(temperature),\n    distance: distance,\n};\n\n// Output dữ liệu đã xử lý\nmsg.payload = processedData;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 1000,
+        "wires": [
+            [
+                "a6be82d0382ca04e"
+            ]
+        ]
+    },
+    {
+        "id": "a6be82d0382ca04e",
+        "type": "mqtt out",
+        "z": "7e0db91819122575",
+        "name": "auco-main02",
+        "topic": "mk_group/auco/data_center/main02_hvac/edge/raspi/tags",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "722c9276a040f589",
+        "x": 810,
+        "y": 1000,
+        "wires": []
+    },
+    {
+        "id": "cb91f4986b85f649",
+        "type": "function",
+        "z": "7e0db91819122575",
+        "name": "function 6",
+        "func": "// Lấy dữ liệu từ MQTT\n//var temperature = msg.payload;\n//var distance = msg.payload;\nvar digitalInput = msg.payload;\n// Tạo đối tượng dữ liệu đã xử lý\nvar processedData = {\n    name: \"pi hostname01 sensor\",\n    timestamp: new Date(),\n    functions: {\n        _deviceId: \"hostname01\",\n        _description: \"raspberry pi hostname01\"\n    },\n    //temp: parseFloat(temperature),\n    //distance: distance,\n    digitalInput: digitalInput,\n};\n\n// Output dữ liệu đã xử lý\nmsg.payload = processedData;\nreturn msg;\n",
+        "outputs": 1,
+        "timeout": 0,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 500,
+        "y": 1100,
+        "wires": [
+            [
+                "aa7a4cf6a7fc05fe"
+            ]
+        ]
+    },
+    {
+        "id": "aa7a4cf6a7fc05fe",
+        "type": "mqtt out",
+        "z": "7e0db91819122575",
+        "name": "auco-main03",
+        "topic": "mk_group/auco/data_center/main03_hvac/edge/raspi/tags",
+        "qos": "2",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "722c9276a040f589",
+        "x": 810,
+        "y": 1100,
+        "wires": []
+    },
+    {
+        "id": "63290cc70bdd2acc",
+        "type": "rpi-gpio in",
+        "z": "7e0db91819122575",
+        "name": "",
+        "pin": "17",
+        "intype": "tri",
+        "debounce": "25",
+        "read": false,
+        "bcm": true,
+        "x": 310,
+        "y": 300,
+        "wires": [
+            [
+                "2334892d2c7cf244",
+                "cb91f4986b85f649"
+            ]
+        ]
+    },
+    {
+        "id": "cdad21d1bd965194",
+        "type": "rpi-gpio out",
+        "z": "7e0db91819122575",
+        "name": "",
+        "pin": "26",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 1500,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "217a22e597e8d34b",
+        "type": "rpi-gpio out",
+        "z": "7e0db91819122575",
+        "name": "",
+        "pin": "20",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 1500,
+        "y": 440,
+        "wires": []
+    },
+    {
+        "id": "94622be88e710320",
+        "type": "rpi-gpio out",
+        "z": "7e0db91819122575",
+        "name": "",
+        "pin": "21",
+        "set": "",
+        "level": "0",
+        "freq": "",
+        "out": "out",
+        "bcm": true,
+        "x": 1500,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "722c9276a040f589",
+        "type": "mqtt-broker",
+        "name": "auco",
+        "broker": "mqtt.auco.lan",
+        "port": "1883",
+        "clientid": "",
+        "autoConnect": true,
+        "usetls": false,
+        "protocolVersion": "4",
+        "keepalive": "60",
+        "cleansession": true,
+        "autoUnsubscribe": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    }
+]
